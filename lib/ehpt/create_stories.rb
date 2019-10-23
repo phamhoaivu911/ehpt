@@ -1,3 +1,5 @@
+require 'csv'
+
 module Ehpt
   class CreateStories < Base
     attr_reader :csv_file, :project
@@ -10,7 +12,7 @@ module Ehpt
 
     def call
       validate_csv_file!
-      create_stories
+      create_stories unless error?
     end
 
     private
@@ -22,11 +24,11 @@ module Ehpt
     end
 
     def create_stories
-      CSV.foreach(csv_file) do |story_attrs|
+      CSV.parse(csv_file, headers: true) do |story_attrs|
         story_creator = Ehpt::CreateStory.new(project, story_attrs)
         story_creator.call
         if story_creator.error?
-          @errors << story_creator.errors
+          @errors = @errors.concat(story_creator.errors)
         end
       end
     end

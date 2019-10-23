@@ -6,7 +6,7 @@ module Ehpt
       new(*args).call
     end
 
-    def initialize
+    def initialize(*args)
       @data = nil
       @errors = []
     end

@@ -5,6 +5,7 @@ module Ehpt
     def initialize(project, story_attrs)
       @project = project
       @story_attrs = story_attrs
+      super
     end
 
     def call
@@ -17,16 +18,12 @@ module Ehpt
     private
 
     def create_story
-      @story = project.create_story(prepared_story_attrs)
+      @story = project.create_story(story_attrs)
     end
 
     def prefix_story_name_with_id
       @story.name = [@story.id.to_s.split(//).last(3).join, @story.name].join(' - ')
       @story.save
-    end
-
-    def prepared_story_attrs
-      story_attrs
     end
   end
 end
