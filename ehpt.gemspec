@@ -7,6 +7,12 @@ Gem::Specification.new do |s|
   s.authors     = ['phamhoaivu911']
   s.email       = ''
   s.files       = ['lib/ehpt.rb']
-  s.homepage    = ''
+  s.homepage    = 'https://github.com/phamhoaivu911/ehpt'
   s.license     = 'MIT'
+
+  s.add_development_dependency 'rake'
+  s.add_development_dependency 'rspec'
+
+  s.add_dependency 'tracker_api'
+  s.add_dependency 'csv'
 end
