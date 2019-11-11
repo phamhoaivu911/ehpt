@@ -2,29 +2,29 @@ require 'csv'
 
 module Ehpt
   class CreateStories < Base
-    attr_reader :csv_file, :project
+    attr_reader :csv_content, :project
 
-    def initialize(csv_file, project)
-      @csv_file = csv_file
+    def initialize(csv_content, project)
+      @csv_content = csv_content
       @project = project
       super
     end
 
     def call
-      validate_csv_file!
+      validate_csv_content!
       create_stories unless error?
     end
 
     private
 
-    def validate_csv_file!
-      if csv_file.blank?
+    def validate_csv_content!
+      if csv_content.blank?
         @errors << 'CSV file is empty'
       end
     end
 
     def create_stories
-      CSV.parse(csv_file, headers: true) do |story_attrs|
+      CSV.parse(csv_content, headers: true) do |story_attrs|
         story_creator = Ehpt::CreateStory.new(project, story_attrs)
         story_creator.call
         if story_creator.error?
