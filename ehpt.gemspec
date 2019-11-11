@@ -6,7 +6,13 @@ Gem::Specification.new do |s|
   s.description = 'A tool to create Pivotal Tracker story from CSV file'
   s.authors     = ['phamhoaivu911']
   s.email       = ''
-  s.files       = ['lib/ehpt.rb']
+  s.files       = [
+    'lib/ehpt.rb',
+    'lib/ehpt/base.rb',
+    'lib/ehpt/create_stories.rb',
+    'lib/ehpt/create_story.rb',
+    'lib/ehpt/get_project.rb'
+  ]
   s.homepage    = 'https://github.com/phamhoaivu911/ehpt'
   s.license     = 'MIT'
 
