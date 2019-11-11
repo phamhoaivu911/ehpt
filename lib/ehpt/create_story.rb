@@ -1,4 +1,6 @@
-module Ehpt
+require 'ehpt/base'
+
+class Ehpt
   class CreateStory < Base
     attr_reader :project, :story_attrs
 
@@ -11,6 +13,7 @@ module Ehpt
     def call
       create_story
       prefix_story_name_with_id
+      puts "Created story: #{@story.name}"
     rescue StandardError => e
       errors << e.message
     end

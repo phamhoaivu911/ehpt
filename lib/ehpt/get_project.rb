@@ -1,4 +1,7 @@
-module Ehpt
+require 'tracker_api'
+require 'ehpt/base'
+
+class Ehpt
   class GetProject < Base
     attr_reader :token, :project_id
 

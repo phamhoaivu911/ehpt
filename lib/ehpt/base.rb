@@ -1,4 +1,4 @@
-module Ehpt
+class Ehpt
   class Base
     attr_reader :data, :errors
 

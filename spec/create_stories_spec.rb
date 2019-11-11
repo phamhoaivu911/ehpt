@@ -4,18 +4,18 @@ end
 
 describe Ehpt::CreateStories do
   let(:project) { double }
-  let(:service) { described_class.new(csv_file, project) }
-  let(:csv_file) {
+  let(:service) { described_class.new(csv_content, project) }
+  let(:csv_content) {
     "name,estimate\r\n"\
     "Add API,3"
   }
 
-  context 'csv file is invalid' do
-    let(:csv_file) { nil }
+  context 'csv content is invalid' do
+    let(:csv_content) { nil }
 
     it 'errors is present' do
       service.call
-      expect(service.errors).to eq(['CSV file is empty'])
+      expect(service.errors).to eq(['CSV content is empty'])
     end
   end
 
@@ -25,7 +25,7 @@ describe Ehpt::CreateStories do
     it 'calls Ehpt::CreateStory with correct params' do
       expect(Ehpt::CreateStory).to receive(:new).with(
         project,
-        a_valid_row_data({"name"=>"Add API", "estimate"=>"3"})
+        a_valid_row_data({"name"=>"Add API", "estimate"=>3.0})
       ).and_return(story_creator)
       expect(story_creator).to receive(:call)
 
@@ -49,7 +49,7 @@ describe Ehpt::CreateStories do
     it 'errors is present' do
       expect(Ehpt::CreateStory).to receive(:new).with(
         project,
-        a_valid_row_data({"name"=>"Add API", "estimate"=>"3"})
+        a_valid_row_data({"name"=>"Add API", "estimate"=>3.0})
       ).and_return(story_creator)
 
       service.call

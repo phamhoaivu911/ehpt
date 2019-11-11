@@ -15,11 +15,12 @@ Gem::Specification.new do |s|
   ]
   s.homepage    = 'https://github.com/phamhoaivu911/ehpt'
   s.license     = 'MIT'
+  s.executables << 'ehpt'
 
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'byebug'
+  s.add_development_dependency 'rake', '13.0.0'
+  s.add_development_dependency 'rspec', '3.9.0'
+  s.add_development_dependency 'byebug', '11.0.1'
 
-  s.add_dependency 'tracker_api'
-  s.add_dependency 'csv'
+  s.add_dependency 'tracker_api', '~> 1.10', '>= 1.10.0'
+  s.add_dependency 'csv', '~> 3.1', '>= 3.1.2'
 end

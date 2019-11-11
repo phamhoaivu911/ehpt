@@ -1,4 +1,6 @@
 require 'csv'
+require 'ehpt/get_project'
+require 'ehpt/create_stories'
 
 class Ehpt
   attr_reader :csv_content, :project
@@ -12,7 +14,7 @@ class Ehpt
     stories_creator = Ehpt::CreateStories.new(csv_content, project)
     stories_creator.call
     if stories_creator.error?
-      raise 'Create stories error'
+      raise StandardError, stories_creator.errors
     end
   end
 
@@ -23,9 +25,10 @@ class Ehpt
     project_getter.call
 
     if project_getter.error?
-      raise 'Get project error'
+      raise StandardError, project_getter.errors
     end
 
+    puts "Found project #{project_getter.data.name}"
     project_getter.data
   end
 end
