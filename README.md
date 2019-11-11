@@ -7,8 +7,8 @@ Employement Hero Pivotal Tracker: A simple command line tool to import stories t
 ```
   $ gem install ehpt
 ```
-    
-        
+
+
 ## Usage
 ### Command
 ```
@@ -16,9 +16,9 @@ Employement Hero Pivotal Tracker: A simple command line tool to import stories t
 ```
 That's it. Enjoy.
 ### CSV structure
-This is the sample [csv file](https://docs.google.com/spreadsheets/d/1ew69plL2-jOF3oJb0RNRAmyRQfer8VvQfR8DGwD6_Ro/edit?usp=sharing). For more information about the story attributes, please visit Pivotal Tracker [API Documentation](https://www.pivotaltracker.com/help/api/rest/v5#story_resource)
+This is the sample [csv file](https://docs.google.com/spreadsheets/d/1ew69plL2-jOF3oJb0RNRAmyRQfer8VvQfR8DGwD6_Ro/edit?usp=sharing). For more information about the story attributes, please visit Pivotal Tracker [API Documentation](https://www.pivotaltracker.com/help/api/rest/v5#projects_project_id_stories_post)
 ### API Token
-Navigate to https://www.pivotaltracker.com/profile and scroll down, you should see your API TOKEN there. If you don't already have it, create one. 
+Navigate to https://www.pivotaltracker.com/profile and scroll down, you should see your API TOKEN there. If you don't already have it, create one.
 
 If you don't specify the `requested_by_id` in your csv file, the user with this API TOKEN will be the requester of the stories.
 ### Project Id

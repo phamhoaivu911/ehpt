@@ -6,14 +6,9 @@ class Ehpt
   class CreateStories < Base
     attr_reader :csv_content, :project
 
-    ARRAY_TYPE_ATTRIBUTES = %w[
-      labels tasks pull_requests branches blockers followers comments reviews
-    ]
+    ARRAY_TYPE_ATTRIBUTES = %w[ labels tasks pull_requests branches blockers comments reviews ]
 
-    INT_ARRAY_TYPE_ATTRIBUTES = %w[
-      owner_ids label_ids task_ids pull_request_ids branch_ids
-      blocker_ids follower_ids comment_ids review_ids
-    ]
+    INT_ARRAY_TYPE_ATTRIBUTES = %w[ owner_ids label_ids follower_ids ]
 
     INT_TYPE_ATTRIBUTES = %w[ project_id requested_by_id before_id after_id integration_id ]
 
