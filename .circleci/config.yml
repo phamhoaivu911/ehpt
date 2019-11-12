@@ -1,0 +1,29 @@
+
+version: 2
+jobs:
+  build:
+    working_directory: ~/ehpt
+    docker:
+      - image: circleci/ruby:2.6.0
+        environment:
+    steps:
+      - checkout
+
+       # Restore Cached Dependencies
+      - type: cache-restore
+        name: Restore bundle cache
+        key: efisheries-{{ checksum "Gemfile.lock" }}
+
+       # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+       # Cache Dependencies
+      - type: cache-save
+        name: Store bundle cache
+        key: efisheries-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+       # Run the tests
+      - run: bundle exec rake
+estination: test-results
