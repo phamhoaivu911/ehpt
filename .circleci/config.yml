@@ -25,5 +25,5 @@ jobs:
           - vendor/bundle
 
        # Run the tests
-      - run: bundle exec rake
+      - run: bundle exec rspec
 estination: test-results
