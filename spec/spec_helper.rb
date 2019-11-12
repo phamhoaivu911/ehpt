@@ -17,6 +17,7 @@
 
 require 'tracker_api'
 require 'byebug'
+require 'ostruct'
 
 Dir['./lib/ehpt/*.rb'].each { |f| require f }
 

@@ -13,7 +13,6 @@ class Ehpt
     def call
       create_story
       prefix_story_name_with_id
-      puts "Created story: #{@story.name}"
     rescue StandardError => e
       errors << e.message
     end
@@ -21,12 +20,12 @@ class Ehpt
     private
 
     def create_story
-      @story = project.create_story(story_attrs)
+      @data = project.create_story(story_attrs)
     end
 
     def prefix_story_name_with_id
-      @story.name = [@story.id.to_s.split(//).last(3).join, @story.name].join(' - ')
-      @story.save
+      @data.name = [@data.id.to_s.split(//).last(3).join, @data.name].join(' - ')
+      @data.save
     end
   end
 end
