@@ -42,7 +42,10 @@ class Ehpt
         if story_creator.success?
           puts "Created story: #{story_creator.data.name}"
         else
-          @errors = @errors.concat(story_creator.errors)
+          @errors = @errors << {
+            row: row.to_h,
+            errors: story_creator.errors
+          }
         end
       end
     end

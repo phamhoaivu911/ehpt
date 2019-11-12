@@ -1,3 +1,4 @@
+require 'pp'
 require 'csv'
 require 'ehpt/get_project'
 require 'ehpt/create_stories'
@@ -15,7 +16,8 @@ class Ehpt
     stories_creator.call
     puts "Done"
     if stories_creator.error?
-      puts "Errors: #{stories_creator.errors}"
+      puts "===== Errors ====="
+      pp stories_creator.errors
     end
   end
 
