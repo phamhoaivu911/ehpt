@@ -29,7 +29,7 @@ If you don't specify the `requested_by_id` in your csv file, the user with this 
 Navigate to your project dashboard. The last digits in the url is the project's id. The url should be something like `https://www.pivotaltracker.com/n/projects/1234567`
 
 ## Thank you
-Special thanks to @phthhieu for his initial script and his encouragement.
+Special thanks to [@phthhieu](https://github.com/phthhieu) for his initial script and his encouragement.
 
 ## License
 MIT
