@@ -14,7 +14,7 @@ class Ehpt
       create_story
       prefix_story_name_with_id
     rescue StandardError => e
-      errors << eval(e.message)[:body]
+      add_error(eval(e.message)[:body])
     end
 
     private

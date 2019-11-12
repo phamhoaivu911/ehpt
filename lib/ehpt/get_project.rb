@@ -15,7 +15,7 @@ class Ehpt
       pt_client = TrackerApi::Client.new(token: token)
       @data = pt_client.project(project_id)
     rescue StandardError => e
-      @errors << e.message
+      add_error(eval(e.message)[:body])
     end
   end
 end

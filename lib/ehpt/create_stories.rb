@@ -24,14 +24,16 @@ class Ehpt
       validate_csv_file!
       create_stories unless error?
     rescue StandardError => e
-      errors << e.message
+      add_error(e.message)
     end
 
     private
 
     def validate_csv_file!
-      @errors << 'Input file must be a csv file' if File.extname(csv_file) != '.csv'
-      @errors << 'CSV content is empty' if File.zero?(csv_file)
+      if File.extname(csv_file) != '.csv'
+        add_error('Input file must be a csv file' )
+      end
+      add_error('CSV content is empty') if File.zero?(csv_file)
     end
 
     def create_stories
@@ -39,13 +41,14 @@ class Ehpt
         story_attrs = create_story_attributes(row)
         story_creator = Ehpt::CreateStory.new(project, story_attrs)
         story_creator.call
+
         if story_creator.success?
           puts "Created story: #{story_creator.data.name}"
         else
-          @errors = @errors << {
+          add_error({
             row: row.to_h,
             errors: story_creator.errors
-          }
+          })
         end
       end
     end

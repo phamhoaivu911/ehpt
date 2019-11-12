@@ -18,5 +18,15 @@ class Ehpt
     def error?
       !success?
     end
+
+    def add_error(error)
+      if error.is_a?(Array)
+        error.each do |err|
+          add_error(err)
+        end
+      else
+        @errors << error
+      end
+    end
   end
 end
