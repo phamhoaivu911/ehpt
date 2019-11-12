@@ -1,6 +1,6 @@
 require 'ehpt/base'
 
-class Ehpt
+module Ehpt
   class CreateStory < Base
     attr_reader :project, :story_attrs
 

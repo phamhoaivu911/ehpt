@@ -63,7 +63,7 @@ describe Ehpt::CreateStories do
 
         service.call
 
-        expect(service.errors).to eq(['Error'])
+        expect(service.errors).to eq([{ row: {"name"=>"Add API", "estimate"=>"3"}, errors: ['Error'] }])
       end
     end
   end

@@ -21,7 +21,7 @@ describe Ehpt::CreateStory do
 
   context 'create story failed' do
     it 'errors is present' do
-      allow(project).to receive(:create_story).and_raise(StandardError, 'Error')
+      allow(project).to receive(:create_story).and_raise(StandardError, '{body: "Error"}')
       service.call
       expect(service.errors).to eq(['Error'])
     end

@@ -2,7 +2,7 @@ require 'csv'
 require 'ehpt/base'
 require 'ehpt/create_story'
 
-class Ehpt
+module Ehpt
   class CreateStories < Base
     attr_reader :csv_file, :project
 

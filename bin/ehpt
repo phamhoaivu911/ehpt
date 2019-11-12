@@ -2,4 +2,4 @@
 
 require 'ehpt'
 
-Ehpt.new(*ARGV).call
+Ehpt.call(*ARGV)

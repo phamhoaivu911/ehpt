@@ -1,7 +1,7 @@
 require 'tracker_api'
 require 'ehpt/base'
 
-class Ehpt
+module Ehpt
   class GetProject < Base
     attr_reader :token, :project_id
 

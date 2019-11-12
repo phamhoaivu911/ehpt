@@ -38,7 +38,7 @@ describe Ehpt::GetProject do
   context 'get project error' do
     let(:service) { described_class.new('abc123', 'xyz456') }
     before do
-      allow(TrackerApi::Client).to receive(:new).and_raise(StandardError, 'Error')
+      allow(TrackerApi::Client).to receive(:new).and_raise(StandardError, '{body: "Error"}')
       service.call
     end
 

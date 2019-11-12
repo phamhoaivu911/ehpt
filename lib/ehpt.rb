@@ -3,16 +3,8 @@ require 'csv'
 require 'ehpt/get_project'
 require 'ehpt/create_stories'
 
-class Ehpt
-  attr_reader :csv_file, :project_id, :token
-
-  def initialize(csv_file, token, project_id)
-    @csv_file = csv_file
-    @token = token
-    @project_id = project_id
-  end
-
-  def call
+module Ehpt
+  def self.call(csv_file, token, project_id)
     project_getter = Ehpt::GetProject.new(token, project_id)
     project_getter.call
 
