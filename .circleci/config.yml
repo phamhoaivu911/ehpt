@@ -8,11 +8,10 @@ jobs:
         environment:
     steps:
       - checkout
-
        # Restore Cached Dependencies
       - type: cache-restore
         name: Restore bundle cache
-        key: efisheries-{{ checksum "Gemfile.lock" }}
+        key: ehpt-{{ checksum "Gemfile.lock" }}
 
        # Bundle install dependencies
       - run: bundle install --path vendor/bundle
@@ -20,7 +19,7 @@ jobs:
        # Cache Dependencies
       - type: cache-save
         name: Store bundle cache
-        key: efisheries-{{ checksum "Gemfile.lock" }}
+        key: ehpt-{{ checksum "Gemfile.lock" }}
         paths:
           - vendor/bundle
 
