@@ -1,5 +1,9 @@
 # EHPT
 [![Gem Version](https://badge.fury.io/rb/ehpt.svg)](https://badge.fury.io/rb/ehpt)
+![Build](https://img.shields.io/circleci/build/github/phamhoaivu911/ehpt/master)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Downloads](https://img.shields.io/gem/dtv/ehpt)
+
 ## Description
 Employement Hero Pivotal Tracker: A simple command line tool to import stories to Pivotal Tracker via CSV file.
 
