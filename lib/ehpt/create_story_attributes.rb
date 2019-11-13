@@ -29,6 +29,12 @@ module Ehpt
         story_attrs['requested_by_id'] = user_id unless user_id.nil?
       end
 
+      if story_attrs.has_key?('owners')
+        owners = story_attrs.delete('owners').split(',')
+        owner_ids = owners.map { |owner| get_user_id_from(owner.strip) }.compact
+        story_attrs['owner_ids'] = owner_ids unless owner_ids.empty?
+      end
+
       @data = story_attrs
     rescue StandardError => e
       add_error({
