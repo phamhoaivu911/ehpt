@@ -19,12 +19,15 @@ That's it. Enjoy.
 This is the sample [csv file](https://docs.google.com/spreadsheets/d/1ew69plL2-jOF3oJb0RNRAmyRQfer8VvQfR8DGwD6_Ro/edit?usp=sharing). For more information about the story attributes, please visit Pivotal Tracker [API Documentation](https://www.pivotaltracker.com/help/api/rest/v5#projects_project_id_stories_post)
 
 #### Note
-Your project may not enable estimation for bug and chore stories. Please check it before you add the estimation for those type of stories.
+- You can specify the requester of a story by using the initials. Instead of providing the `requested_by_id` attribute, you can provide the attribute `requested_by` with value is the initials of the user.
+- Similar to `requested_by`, you can specify the owners of a story by using the initial. Instead of providing the `owner_ids` attribute, you can provide the attribute `owners` with value is the list of initials of the users.
+- Initials is how your initials will appear to others in PT. Please visit [Pivotal Tracker](https://www.pivotaltracker.com/help/articles/updating_your_name_email_initials/) for more information.
+- Your project may not enable estimation for bug and chore stories. Please check it before you add the estimation for those type of stories.
 
 ### API Token
 Navigate to https://www.pivotaltracker.com/profile and scroll down, you should see your API TOKEN there. If you don't already have it, create one.
 
-If you don't specify the `requested_by_id` in your csv file, the user with this API TOKEN will be the requester of the stories.
+If you don't specify the `requested_by_id` or `requested_by` in your csv file, the user with this API TOKEN will be the requester of the stories.
 ### Project Id
 Navigate to your project dashboard. The last digits in the url is the project's id. The url should be something like `https://www.pivotaltracker.com/n/projects/1234567`
 

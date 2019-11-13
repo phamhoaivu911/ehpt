@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'ehpt'
-  s.version     = '1.0.4'
+  s.version     = '1.0.5'
   s.date        = '2019-10-23'
   s.summary     = "Employment Hero Pivotal Tracker"
   s.description = 'A command line tool to create Pivotal Tracker stories from CSV file'
