@@ -18,8 +18,9 @@
 require 'tracker_api'
 require 'byebug'
 require 'ostruct'
+require 'csv'
 
-Dir['./lib/ehpt/*.rb'].each { |f| require f }
+Dir['./lib/**/*.rb'].each { |f| require f }
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

@@ -11,7 +11,9 @@ Gem::Specification.new do |s|
     'lib/ehpt/base.rb',
     'lib/ehpt/create_stories.rb',
     'lib/ehpt/create_story.rb',
-    'lib/ehpt/get_project.rb'
+    'lib/ehpt/get_project.rb',
+    'lib/ehpt/create_story_attributes.rb',
+    'lib/ehpt/get_user_id_from_initial.rb'
   ]
   s.homepage    = 'https://github.com/phamhoaivu911/ehpt'
   s.license     = 'MIT'

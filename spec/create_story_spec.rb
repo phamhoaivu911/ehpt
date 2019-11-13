@@ -4,7 +4,11 @@ describe Ehpt::CreateStory do
   end
   let(:project) { double('PT project', create_story: story) }
   let(:story_attrs) { { name: 'Add API', labels: ['backend', 'API'], estimate: 3 } }
-  let(:service) { described_class.new(project, story_attrs) }
+  let(:service) { described_class.new(story_attrs) }
+
+  before do
+    allow(Ehpt).to receive(:project).and_return(project)
+  end
 
   context 'create story successfully' do
     it 'calls create_story with correct story_attrs' do

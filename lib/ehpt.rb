@@ -1,9 +1,22 @@
+require 'tracker_api'
 require 'pp'
 require 'csv'
-require 'ehpt/get_project'
+require 'ehpt/base'
 require 'ehpt/create_stories'
+require 'ehpt/create_story'
+require 'ehpt/create_story_attributes'
+require 'ehpt/get_project'
+require 'ehpt/get_user_id_from_initial'
 
 module Ehpt
+  def self.project=(project)
+    @@project = project
+  end
+
+  def self.project
+    @@project
+  end
+
   def self.call(csv_file, token, project_id)
     project_getter = Ehpt::GetProject.new(token, project_id)
     project_getter.call
@@ -14,10 +27,10 @@ module Ehpt
       return
     end
 
+    self.project = project_getter.data
     puts "Found project: #{project_getter.data.name}"
-    project = project_getter.data
 
-    stories_creator = Ehpt::CreateStories.new(csv_file, project)
+    stories_creator = Ehpt::CreateStories.new(csv_file)
     stories_creator.call
 
     puts "Done"
@@ -25,6 +38,11 @@ module Ehpt
     if stories_creator.error?
       puts "===== Errors ====="
       pp stories_creator.errors
+    end
+
+    if stories_creator.warning?
+      puts "===== Warnings ====="
+      pp stories_creator.warnings
     end
   end
 end

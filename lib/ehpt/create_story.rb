@@ -1,11 +1,8 @@
-require 'ehpt/base'
-
 module Ehpt
   class CreateStory < Base
-    attr_reader :project, :story_attrs
+    attr_reader :story_attrs
 
-    def initialize(project, story_attrs)
-      @project = project
+    def initialize(story_attrs)
       @story_attrs = story_attrs
       super
     end
@@ -20,7 +17,7 @@ module Ehpt
     private
 
     def create_story
-      @data = project.create_story(story_attrs)
+      @data = Ehpt.project.create_story(story_attrs)
     end
 
     def prefix_story_name_with_id

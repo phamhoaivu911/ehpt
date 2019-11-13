@@ -1,22 +1,9 @@
-require 'csv'
-require 'ehpt/base'
-require 'ehpt/create_story'
-
 module Ehpt
   class CreateStories < Base
-    attr_reader :csv_file, :project
+    attr_reader :csv_file
 
-    ARRAY_TYPE_ATTRIBUTES = %w[ labels tasks pull_requests branches blockers comments reviews ]
-
-    INT_ARRAY_TYPE_ATTRIBUTES = %w[ owner_ids label_ids follower_ids ]
-
-    INT_TYPE_ATTRIBUTES = %w[ project_id requested_by_id before_id after_id integration_id ]
-
-    FLOAT_TYPE_ATTRIBUES = %w[ estimate ]
-
-    def initialize(csv_file, project)
+    def initialize(csv_file)
       @csv_file = csv_file
-      @project = project
       super
     end
 
@@ -39,7 +26,10 @@ module Ehpt
     def create_stories
       CSV.foreach(csv_file, headers: true) do |row|
         story_attrs = create_story_attributes(row)
-        story_creator = Ehpt::CreateStory.new(project, story_attrs)
+
+        next if error?
+
+        story_creator = Ehpt::CreateStory.new(story_attrs)
         story_creator.call
 
         if story_creator.success?
@@ -54,14 +44,17 @@ module Ehpt
     end
 
     def create_story_attributes(row)
-      story_attrs = row.to_h.compact
-      story_attrs.each do |key, value|
-        story_attrs[key] = value.to_i if INT_TYPE_ATTRIBUTES.include?(key)
-        story_attrs[key] = value.to_f if FLOAT_TYPE_ATTRIBUES.include?(key)
-        story_attrs[key] = value.split(',') if ARRAY_TYPE_ATTRIBUTES.include?(key)
-        story_attrs[key] = value.split(',').map(&:to_i) if INT_ARRAY_TYPE_ATTRIBUTES.include?(key)
+      attr_creator = Ehpt::CreateStoryAttributes.new(row)
+      attr_creator.call
+
+      add_warning(attr_creator.warnings) if attr_creator.warning?
+
+      if attr_creator.error?
+        add_error(attr_creator.errors)
+        return
       end
-      story_attrs
+
+      attr_creator.data
     end
   end
 end
