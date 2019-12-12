@@ -39,3 +39,6 @@ Special thanks to [@phthhieu](https://github.com/phthhieu) for his initial scrip
 
 ## License
 MIT
+
+## Caveat
+Pivotal tracker has its own CSV import/export feature. More information [here](https://www.pivotaltracker.com/help/articles/csv_import_export/)
