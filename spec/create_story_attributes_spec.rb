@@ -167,4 +167,92 @@ describe Ehpt::CreateStoryAttributes do
       })
     end
   end
+
+  context 'estimate for chore and bug story' do
+    before do
+      allow(Ehpt).to receive(:project).and_return(
+        double('PT project', bugs_and_chores_are_estimatable: bugs_and_chores_are_estimatable)
+      )
+    end
+
+    context 'allow bugs_and_chores_are_estimatable' do
+      let(:bugs_and_chores_are_estimatable) { true }
+
+      context 'chore story' do
+        let(:row) { base_row.merge({ 'story_type' => 'chore' }) }
+
+        it 'returns correct attrs' do
+          service.call
+
+          expect(service.data).to eq({
+            'name' => 'Add API',
+            'description' => 'Add API to get list of users',
+            'labels' => ['web', 'sprint 1'],
+            'follower_ids' => [1, 2, 3],
+            'project_id' => 100,
+            'estimate' => 3.0,
+            'story_type' => 'chore',
+          })
+        end
+      end
+
+      context 'bug story' do
+        let(:row) { base_row.merge({ 'story_type' => 'bug' }) }
+
+        it 'returns correct attrs' do
+          service.call
+
+          expect(service.data).to eq({
+            'name' => 'Add API',
+            'description' => 'Add API to get list of users',
+            'labels' => ['web', 'sprint 1'],
+            'follower_ids' => [1, 2, 3],
+            'project_id' => 100,
+            'estimate' => 3.0,
+            'story_type' => 'bug',
+          })
+        end
+      end
+    end
+
+    context 'DOES NOT allow bugs_and_chores_are_estimatable' do
+      let(:bugs_and_chores_are_estimatable) { false }
+
+      context 'chore story' do
+        let(:row) { base_row.merge({ 'story_type' => 'chore' }) }
+
+        it 'returns correct attrs' do
+          service.call
+
+          expect(service.data).to eq({
+            'name' => 'Add API',
+            'description' => 'Add API to get list of users',
+            'labels' => ['web', 'sprint 1'],
+            'follower_ids' => [1, 2, 3],
+            'project_id' => 100,
+            'estimate' => nil,
+            'story_type' => 'chore',
+          })
+        end
+      end
+
+      context 'bug story' do
+        let(:row) { base_row.merge({ 'story_type' => 'bug' }) }
+
+        it 'returns correct attrs' do
+          service.call
+
+          expect(service.data).to eq({
+            'name' => 'Add API',
+            'description' => 'Add API to get list of users',
+            'labels' => ['web', 'sprint 1'],
+            'follower_ids' => [1, 2, 3],
+            'project_id' => 100,
+            'estimate' => nil,
+            'story_type' => 'bug',
+          })
+        end
+      end
+    end
+  end
 end

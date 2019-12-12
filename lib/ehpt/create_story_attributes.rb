@@ -24,6 +24,10 @@ module Ehpt
         story_attrs[key] = value.split(',').map(&:to_i) if INT_ARRAY_TYPE_ATTRIBUTES.include?(key)
       end
 
+      if story_attrs['story_type'] != 'feature' && !Ehpt.project.bugs_and_chores_are_estimatable
+        story_attrs['estimate'] = nil
+      end
+
       if story_attrs.has_key?('requested_by')
         user_id = get_user_id_from(story_attrs.delete('requested_by'))
         story_attrs['requested_by_id'] = user_id unless user_id.nil?
