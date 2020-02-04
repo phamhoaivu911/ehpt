@@ -41,4 +41,5 @@ Special thanks to [@phthhieu](https://github.com/phthhieu) for his initial scrip
 MIT
 
 ## Caveat
-Pivotal tracker has its own CSV import/export feature. More information [here](https://www.pivotaltracker.com/help/articles/csv_import_export/)
+At Employment Hero, we have a practice to prefix the card's title with the last 3 digits of its id. We then refer to the card by this new 3-digits id.
+If you don't need this 3-digits prefix, you can use the built-in import/export feature from Pivotal Tracker. More information [here](https://www.pivotaltracker.com/help/articles/csv_import_export/)
